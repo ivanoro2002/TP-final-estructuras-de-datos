@@ -28,6 +28,10 @@ class Mensaje:
         self._leido = False
 
     
+    def mostrar(self):
+        estado = "Leído" if self._leido else "No leído"
+        print(f"Asunto: {self._asunto}\nDe: {self._remitente}\nPara: {self._destinatario}\nFecha: {self._fecha}\nEstado: {estado}\nContenido:\n{self._contenido}")
+
 class Carpeta:
     def __init__(self,nombre):
         self._nombre = nombre
