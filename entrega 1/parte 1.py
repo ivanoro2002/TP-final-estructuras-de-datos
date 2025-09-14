@@ -61,8 +61,6 @@ class Mensaje: # Sea crea el mensaje
     def asunto(self):
         return self._asuntos
     
-
-
 class Carpeta: # Se crea la carpeta correspondiente.
     def __init__(self, nombre):
         self.nombre = nombre # Recibe el nombre de la carpeta (inbox, enviados, etc)
@@ -80,4 +78,5 @@ class Carpeta: # Se crea la carpeta correspondiente.
     
     def listar_msjs(self):
         return self._mensajes # Recibe todos los mensajesew.
-    
+
+#Pythonsosunaconcha
