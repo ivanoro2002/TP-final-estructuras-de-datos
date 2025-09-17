@@ -77,6 +77,5 @@ class Carpeta: # Se crea la carpeta correspondiente.
             self._mensajes.remove(mensaje)  # Elimina msj de una lista
     
     def listar_msjs(self):
-        return self._mensajes # Recibe todos los mensajesew.
+        return self._mensajes # Recibe todos los mensajes.
 
-#Pythonsosunaconcha
