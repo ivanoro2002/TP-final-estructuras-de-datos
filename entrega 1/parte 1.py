@@ -41,7 +41,10 @@ class Usuario(GestionCorreo):
     def enviar_msjs(self, destinatarios, asunto, contenido):
         mensaje = Mensaje(self._email, destinatarios, asunto, contenido)
         self._carpetas["enviados"].agg_msjs(mensaje)
-
+        for user in self._servidor.obtener_usuarios():
+            if user._email in destinatarios:
+                user.recibir_msjs(mensaje)
+                
     def recibir_msjs(self, mensaje):
         self._carpetas["inbox"].agg_msjs(mensaje)
 
@@ -56,27 +59,23 @@ class Mensaje: # Sea crea el mensaje
         self._destinatarios = destinatarios
         self._asunto = asunto
         self._contenido = contenido    
-    
-    @property
-    def nombre(self):
-        return self._nombre
-    
+      
     @property
     def emisor(self):
         return self._emisor
         
     @property
-    def destinarios(self):
+    def destinatarios(self):
         return self._destinarios
     
     @property
     def asunto(self):
-        return self._asuntos
+        return self._asunto
     
 class Carpeta: # Se crea la carpeta correspondiente.
     def __init__(self, nombre):
         self.nombre = nombre # Recibe el nombre de la carpeta (inbox, enviados, etc)
-        self.mensajes = [] # Crea la lista vacia de mensajes
+        self._mensajes = [] # Crea la lista vacia de mensajes
     
     def msjes(self):
         return self._mensajes # Retorna todos los mensajes
