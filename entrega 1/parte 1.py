@@ -6,7 +6,7 @@ class GestionCorreo(ABC):
         pass
 
     @abstractmethod    
-    def recibir_msjs(self):
+    def recibir_msjs(self, mensaje: str):
         pass
 
     @abstractmethod
@@ -18,7 +18,7 @@ class ServidorCorreo:  #Representa el servidor de mensajeria
         self._email = email # Registra el email del usuario.
         self._usuarios = [] # Lista de usuarios en la que se guardaran los mismos.
 
-    def agregar_usuario(self, usuario): # Agrega usuarios al servidsdor.
+    def agregar_usuario(self, usuario): # Agrega usuarios al servidor.
         self._usuarios.append(usuario)
 
     def eliminar_usuario(self, usuario):
@@ -38,6 +38,18 @@ class Usuario(GestionCorreo):
             "papelera": Carpeta("papelera")
         }    
 
+    def enviar_msjs(self, destinatarios, asunto, contenido):
+        mensaje = Mensaje(self._email, destinatarios, asunto, contenido)
+        self._carpetas["enviados"].agg_msjs(mensaje)
+
+    def recibir_msjs(self, mensaje):
+        self._carpetas["inbox"].agg_msjs(mensaje)
+
+    def listar_msjs(self, carpeta):
+        if carpeta in self._carpetas:
+            return self._carpetas[carpeta].listar_msjs()
+        return []
+    
 class Mensaje: # Sea crea el mensaje 
     def __init__(self, emisor, destinatarios, asunto, contenido):
         self._emisor = emisor
