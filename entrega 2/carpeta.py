@@ -2,8 +2,8 @@ class Carpeta:  # Se crea la carpeta correspondiente.
     def __init__(self, nombre):
         self.nombre = nombre  # Recibe el nombre de la carpeta (inbox, enviados, etc)
         self._mensajes = []  # Crea la lista vacia de mensajes
-    
-    def msjes(self):
+        self._subcarpetas = []  # lista de subcarpetas
+    def msjs(self):
         return self._mensajes  # Retorna todos los mensajes
     
     def agg_msjs(self, mensaje):  # Se define la función y recibe el mensaje
@@ -15,3 +15,11 @@ class Carpeta:  # Se crea la carpeta correspondiente.
     
     def listar_msjs(self):
         return self._mensajes  # Recibe todos los mensajes.
+
+    def agg_subcarpeta(self, subcarpeta):
+        self._subcarpetas.append(subcarpeta)
+    
+    def mover_msjs(self, mensaje, carpeta_destino):
+        if mensaje in self._mensajes:
+            self._mensajes.remove(mensaje)
+            carpeta_destino.agg_msjs(mensaje)
