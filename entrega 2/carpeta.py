@@ -1,25 +1,56 @@
+from mensaje import Mensaje
+
+
 class Carpeta:  # Se crea la carpeta correspondiente.
     def __init__(self, nombre):
-        self.nombre = nombre  # Recibe el nombre de la carpeta (inbox, enviados, etc)
-        self._mensajes = []  # Crea la lista vacia de mensajes
-        self._subcarpetas = []  # lista de subcarpetas
-    def msjs(self):
-        return self._mensajes  # Retorna todos los mensajes
+        self.__nombre = nombre  # Recibe el nombre de la carpeta (inbox, enviados, etc)
+        self.__mensajes = []  # Crea la lista vacia de mensajes
+        self.__subcarpetas = []  # lista de subcarpetas
+    
+    @property
+    def nombre(self):
+        return self.__nombre
+    
+    @property
+    def mensajes(self):
+        return self.__mensajes  
+    
+    @property
+    def subcarpetas(self):
+        return self.__subcarpetas
     
     def agg_msjs(self, mensaje):  # Se define la función y recibe el mensaje
-        return self._mensajes.append(mensaje)  # Agrega el mensaje a la lista de mensajes
+        return self.__mensajes.append(mensaje)  # Agrega el mensaje a la lista de mensajes
     
     def delete_msjs(self, mensaje):  # Se define la función y se recibe el parametro del mensaje
-        if mensaje in self._mensajes:  # Busqueda de msj en la lista de msjs
-            self._mensajes.remove(mensaje)  # Elimina msj de una lista
+        if mensaje in self.__mensajes:  # Busqueda de msj en la lista de msjs
+            self.__mensajes.remove(mensaje)  # Elimina msj de una lista
     
     def listar_msjs(self):
-        return self._mensajes  # Recibe todos los mensajes.
+        return self.__mensajes  # Recibe todos los mensajes.
 
     def agg_subcarpeta(self, subcarpeta):
-        self._subcarpetas.append(subcarpeta)
+        self.__subcarpetas.append(subcarpeta) # Agg carpetas "hijas"
     
+    def buscar_subcarpeta(self, nombre_c):
+        if self.__nombre == nombre_c:       # Si el nombre de la carpeta coincide con la actualmente recorrida
+            return self                 # retorna
+        for i in self.__subcarpetas:       
+            si = i.buscar_subcarpeta(nombre_c) # Busca en cada subcarpeta 
+            if si:
+                return si          
+        return None # Si no encuentra, retorna None
+    
+    def buscar_msj(self, mensaje):
+        hallados = []
+        for m in self.__mensajes:
+            if mensaje.lower() in m.__asunto.lower() or mensaje.lower() in m.__emisor.lower(): # Busca dentro del contenido del asunto y/o dentro del correo emisor.
+                hallados.append(m) 
+        for s in self.__subcarpetas:
+            hallados += s.buscar_msj(mensaje)  # Busqueda recursiva y listar al encontrar.
+        return hallados # Retorna todos los listados
+
     def mover_msjs(self, mensaje, carpeta_destino):
-        if mensaje in self._mensajes:
-            self._mensajes.remove(mensaje)
+        if mensaje in self.__mensajes:
+            self.__mensajes.remove(mensaje)
             carpeta_destino.agg_msjs(mensaje)
