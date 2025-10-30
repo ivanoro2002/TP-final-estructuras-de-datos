@@ -44,21 +44,30 @@ class Carpeta:  # Se crea la carpeta correspondiente.
         return None # Si no encuentra, retorna None
     
     def buscar_msj(self, mensaje):
+        if not isinstance(mensaje, str):  # Corregir a strings 
+            msj = str(mensaje)
+        msj = msj.lower()
         hallados = []
         for m in self.__mensajes:
-            if mensaje.lower() in m.asunto.lower() or mensaje.lower() in m.emisor.lower(): # Busca dentro del contenido del asunto y/o dentro del correo emisor.
+            if mensaje.lower() in m.asunto.lower() or mensaje.lower() in m.emisor.lower(): # Busca dentro del contenido del asunto y del correo emisor.
                 hallados.append(m) 
-        for s in self.__subcarpetas:
+        for s in self.__subcarpetas: # Llamada recursiva a las subcarpetas
             hallados += s.buscar_msj(mensaje)  # Busqueda recursiva y listar al encontrar.
         return hallados # Retorna todos los listados
 
     def mover_msjs(self, mensaje, carpeta_destino): 
-        if mensaje in self.__mensajes:
-            self.__mensajes.remove(mensaje)
-            carpeta_destino.agg_msjs(mensaje)
-            return True
-        for sub in self.__subcarpetas:
-            if sub.mover_msjs(mensaje, carpeta_destino):
+        if not isinstance(mensaje, Mensaje):
+            raise TypeError("No ingresó un mensaje existente.")
+        
+        if not isinstance(carpeta_destino, Carpeta):
+            raise TypeError("No ingresó una carpeta existente.")
+
+        if mensaje in self.__mensajes:   # Cond.Base, aca empieza y puede terminar.
+            self.__mensajes.remove(mensaje) # Si encuentra, lo elimina de la carpeta en la carpeta actual
+            carpeta_destino.agg_msjs(mensaje) # Lo agrega a la carp indicada con el metodo agg.msjs
+            return "Mensaje movido con èxito."
+        for sub in self.__subcarpetas:        # Al no estar en la carpeta actual, empieza a recorrer las sub_c
+            if sub.mover_msjs(mensaje, carpeta_destino):  # Implementa a cada sub carpeta la busqueda del msj de forma recursiva   
                 return True
-        return False # No se encontrò el mensaje 
+        return False # Msj no encontrado. 
     
