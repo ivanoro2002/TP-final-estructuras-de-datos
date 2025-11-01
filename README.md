@@ -22,8 +22,19 @@ El sistema simula el comportamiento de un servidor de correo y la interacción d
 3. Durante el primer día se estableció la base principal del codigo, este incluia las distintas clases a utilizar (GestionCorreo(interfaz), ServidorCorreo, Usuario, Mensaje, Carpeta).
 4. Posteriormente se implementaron los atributos y los distintos metodos para cada clase.
 5. Una vez concluida la estructuración del código se paso a la fase de elaboración del diagrama en base al codigo para poder visualizar la relación entre las clases.
+
 2º Entrega
 1. Se importó la clase Mensaje e implementó el arbol de carpetas dentro de la clase Carpeta que permite la adición de subcarpetas ("carpetas hijas").
 2. Se utilizó un metodo para mover mensajes entre carpetas y buscar mensajes recursivamente de manera tal que busque desde la primer carpeta hasta la ultima mediante filtros (asunto y correo del emisor)
-3. Busqueda de carpetas.
+3. Se corrigieron los errores en los metodos recursivos, se cambio el parametro "mensaje" por "texto" para que sea más especifico y claro sobre lo que trabaja. 
+4. En la recursividad de buscar_msjs habia un error de accesos en la propiedad .asunto, .mensaje y .emisor, el cual ya fue solucionado eliminando los "__". 
+5. Considerando los casos limites, cuando el usuario ingrese un parametro que no es un string, el programa lanzará un error, esto se soluciono con la adición del metodo "isinstance" para que la busqueda funcione correctamente transformando aquellos None, numero (354, 2, 3), listas, etc, en cadenas de texto. Por ejemplo: (123) = ("123).
+6. Con respecto al movimiento de mensajes, implementamos un caso base para que el metodo empiece a recorrer las carpetas y sus subC con el fin de encontrar un mensaje. Por otro lado, para evitar errores se utilizo el metodo "isinstance" para verificar que un parametro corresponda con lo existencia de mensajes y/o carpetas. Esto hace que, si el usuario ingresa un mensaje o carpeta no válido, se le comunique el error.
 
+3º Entrega
+1. Como los filtros tienen que ser definidos por el usuario se consideró que sus metodos esten en la clase USUARIO.ç
+2. El planteo esta basado en dejar tres carpetas iniciales: "inbox", "enviados", "papelera", posteriormente se pueden agregar más. El más importante de estos la carpeta "inbox", que será utilizado en los metodos "filtro" como base, lugar donde llegarán inicialmente los mensajes.
+3. Para los metodos de filtrado de palabras se utilizo un diccionario vacio para que el usuario pueda acceder y localizar filtros de forma más clara. Se utilizó el metodo "agg_filtros" mediante el cual el user coloque que palabras clave irán a que carpeta especificas. El primer problema a resolver fue la busqueda de carpetas destino a la que el usuario le añada la palabra clave a filtrar, para ello utilizamos if y raise.
+4. Para el siguiente metodo (mostrar los filtros añadidos) primero se comprueba si hay filtros ya añadidos, en el caso de que no los haya se notifica y en el caso de que haya se sigue con el metodo: tomar la palabra clave y la carpeta filtrada para luego imprimirlas. 
+5. Además se incorporó la opción de eliminar un filtro que haya agregado el user, utilizando if para ver si se encuentra y el metodo del, que permitirá eliminar la palabra clave filtrada del diccionario de filtros. 
+6. Para concluir se modificó el metodo recibir msjs ya que inicialmente la recepción base es en la carpeta "inbox" para luego tomar la palabra clave y modificar la carpeta a la que va a ir la misma.
