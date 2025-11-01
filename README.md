@@ -23,8 +23,6 @@ El sistema simula el comportamiento de un servidor de correo y la interacción d
 4. Posteriormente se implementaron los atributos y los distintos metodos para cada clase.
 5. Una vez concluida la estructuración del código se paso a la fase de elaboración del diagrama en base al codigo para poder visualizar la relación entre las clases.
 2º Entrega
-
-
 1. Se importó la clase Mensaje e implementó el arbol de carpetas dentro de la clase Carpeta que permite la adición de subcarpetas ("carpetas hijas").
 2. Se utilizó un metodo para mover mensajes entre carpetas y buscar mensajes recursivamente de manera tal que busque desde la primer carpeta hasta la ultima mediante filtros (asunto y correo del emisor)
 3. Busqueda de carpetas.
