@@ -89,4 +89,3 @@ class Carpeta: # Se crea la carpeta correspondiente.
     
     def listar_msjs(self):
         return self._mensajes # Recibe todos los mensajes.
-
