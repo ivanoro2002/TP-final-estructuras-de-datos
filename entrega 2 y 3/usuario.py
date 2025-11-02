@@ -86,4 +86,4 @@ class Usuario(GestionCorreo):
                 break     # Termina al eonctrar el primer filtro a aplicarse
         self.__carpetas[dest].agg_msjs(mensaje) # Agg el mensaje a la carpeta que corresponda
 
-    
+    #hola

@@ -39,3 +39,4 @@ El sistema simula el comportamiento de un servidor de correo y la interacción d
 5. Además se incorporó la opción de eliminar un filtro que haya agregado el user, utilizando if para ver si se encuentra y el metodo del, que permitirá eliminar la palabra clave filtrada del diccionario de filtros. 
 6. Para concluir se modificó el metodo recibir msjs ya que inicialmente la recepción base es en la carpeta "inbox" para luego tomar la palabra clave y modificar la carpeta a la que va a ir la misma.
 7. Para agregar mensajes como urgentes y mostrarlos en primer lugar necesitamos crear una nueva lista en la que se van a alojar aquellos recibidos que en su ASUNTO tiene contenido "urgente". Estos van a ser dos metodos, el primero se va a encargar de revisar los mensajes y, si corresponden, meterlos en la lista de urgentes para posteriormente imprimirlos en el segundo metodo (listar) que fue modificado con esta ultima implementación.  
+8. hola
