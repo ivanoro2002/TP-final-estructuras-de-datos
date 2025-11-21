@@ -39,4 +39,12 @@ El sistema simula el comportamiento de un servidor de correo y la interacción d
 5. Además se incorporó la opción de eliminar un filtro que haya agregado el user, utilizando if para ver si se encuentra y el metodo del, que permitirá eliminar la palabra clave filtrada del diccionario de filtros. 
 6. Para concluir se modificó el metodo recibir msjs ya que inicialmente la recepción base es en la carpeta "inbox" para luego tomar la palabra clave y modificar la carpeta a la que va a ir la misma.
 7. Para agregar mensajes como urgentes y mostrarlos en primer lugar necesitamos crear una nueva lista en la que se van a alojar aquellos recibidos que en su ASUNTO tiene contenido "urgente". Estos van a ser dos metodos, el primero se va a encargar de revisar los mensajes y, si corresponden, meterlos en la lista de urgentes para posteriormente imprimirlos en el segundo metodo (listar) que fue modificado con esta ultima implementación.  
-8. hola
+
+entrega final
+1.Se redistribuyeron los archivos a la carpeta entrega final para tener mejor organizacion.
+2.Se creo el archivo grafo donde se establece la red de servidores de correo a través de la forma de un grafo. Cada servidor se considera un nodo, mientras que cada enlace entre los servidores representa una arista del grafo.
+El grafo tiene una estructura interna (diccionario) que guarda los servidores y sus conexiones.
+El archivo contiene métodos para agregar servidores y conectarlos, métodos bfs() y dfs() que encuentran caminos entre servidores.
+y Un método enviar_por_red() que simula el envío de un mensaje recorriendo la red.
+En resumen se agrega la lógica de comunicación entre servidores.
+3.

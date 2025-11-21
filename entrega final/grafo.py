@@ -1,5 +1,4 @@
 
-from collections import deque
 
 class GrafoServidores:
     def __init__(self):
