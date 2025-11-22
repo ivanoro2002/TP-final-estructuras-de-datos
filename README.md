@@ -47,4 +47,4 @@ El grafo tiene una estructura interna (diccionario) que guarda los servidores y 
 El archivo contiene métodos para agregar servidores y conectarlos, métodos bfs() y dfs() que encuentran caminos entre servidores.
 y Un método enviar_por_red() que simula el envío de un mensaje recorriendo la red.
 En resumen se agrega la lógica de comunicación entre servidores.
-3.
+3. Se implementó una interfaz creando un archivo "menu.py" con sus respectivos FROM para que herede los datos, metodos que necesita el menu. Este permitirá al usuario navegar entre distintas opciones para que importe o extraiga la información necesaria.
